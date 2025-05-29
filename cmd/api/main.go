@@ -44,7 +44,6 @@ func main() {
 		},
 	})
 
-
 	// Use logger middleware
 	app.Use(logger.New())
 
@@ -57,7 +56,6 @@ func main() {
 		ExposeHeaders:    "Content-Length",
 		MaxAge:           86400, // 24 hours
 	}))
-
 
 	// Initialize services
 	trelloClient := trello.NewClient(cfg.TrelloAPIKey)
