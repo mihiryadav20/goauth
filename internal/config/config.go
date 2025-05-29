@@ -1,0 +1,43 @@
+package config
+
+import (
+	"fmt"
+	"os"
+	"time"
+)
+
+// Config holds all configuration for the application
+type Config struct {
+	TrelloAPIKey      string
+	TrelloAPISecret   string
+	CallbackURL       string
+	JWTSecret         string
+	SessionExpiration time.Duration
+}
+
+// Load loads configuration from environment variables
+func Load() *Config {
+	return &Config{
+		TrelloAPIKey:      getEnv("TRELLO_API_KEY", ""),
+		TrelloAPISecret:   getEnv("TRELLO_API_SECRET", ""),
+		CallbackURL:       getEnv("CALLBACK_URL", "http://localhost:3000/auth/trello/callback"),
+		JWTSecret:         getEnv("JWT_SECRET", "your-jwt-secret-key"),
+		SessionExpiration: time.Hour * 24, // 24 hours
+	}
+}
+
+// Validate checks if required configuration is set
+func (c *Config) Validate() error {
+	if c.TrelloAPIKey == "" || c.TrelloAPISecret == "" {
+		return fmt.Errorf("TRELLO_API_KEY and TRELLO_API_SECRET must be set")
+	}
+	return nil
+}
+
+// Helper function to get environment variables with fallback
+func getEnv(key, fallback string) string {
+	if value, exists := os.LookupEnv(key); exists {
+		return value
+	}
+	return fallback
+}
