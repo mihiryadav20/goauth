@@ -11,7 +11,7 @@ import (
 
 // Service handles authentication related operations
 type Service struct {
-	jwtSecret string
+	jwtSecret         string
 	sessionExpiration time.Duration
 }
 
