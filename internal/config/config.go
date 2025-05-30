@@ -11,6 +11,7 @@ type Config struct {
 	TrelloAPIKey      string
 	TrelloAPISecret   string
 	CallbackURL       string
+	FrontendURL       string
 	JWTSecret         string
 	SessionExpiration time.Duration
 }
@@ -21,6 +22,7 @@ func Load() *Config {
 		TrelloAPIKey:      getEnv("TRELLO_API_KEY", ""),
 		TrelloAPISecret:   getEnv("TRELLO_API_SECRET", ""),
 		CallbackURL:       getEnv("CALLBACK_URL", "http://localhost:3000/auth/trello/callback"),
+		FrontendURL:       getEnv("FRONTEND_URL", "http://localhost:3001"),
 		JWTSecret:         getEnv("JWT_SECRET", "your-jwt-secret-key"),
 		SessionExpiration: time.Hour * 24, // 24 hours
 	}

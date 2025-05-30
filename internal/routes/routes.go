@@ -20,6 +20,7 @@ func SetupRoutes(app *fiber.App, authHandler *handlers.AuthHandler) {
 	auth := app.Group("/auth")
 	auth.Get("/trello", authHandler.InitiateAuth)
 	auth.Get("/trello/callback", authHandler.HandleCallback)
+	auth.Post("/register-token", authHandler.RegisterToken)
 
 	// Protected routes
 	api := app.Group("/api", authMiddleware(authSvc))
