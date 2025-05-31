@@ -58,7 +58,7 @@ func main() {
 	}))
 
 	// Initialize services
-	trelloClient := trello.NewClient(cfg.TrelloAPIKey)
+	trelloClient := trello.NewClient(cfg)
 	authSvc := auth.NewService(cfg)
 
 	// Initialize handlers
