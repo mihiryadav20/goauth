@@ -35,7 +35,7 @@ func (h *AuthHandler) InitiateAuth(c *fiber.Ctx) error {
 	state, err := h.AuthSvc.GenerateState()
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": "Failed to generate state",
+			"error": "Failed to generate the state",
 		})
 	}
 
@@ -46,7 +46,7 @@ func (h *AuthHandler) InitiateAuth(c *fiber.Ctx) error {
 	authURL := fmt.Sprintf(
 		"https://trello.com/1/authorize?expiration=30days&name=GoAuth&scope=read&response_type=token&key=%s&return_url=%s&callback_method=fragment&state=%s",
 		h.config.TrelloAPIKey,
-		url.QueryEscape(h.config.FrontendURL + "/callback"),
+		url.QueryEscape(h.config.FrontendURL+"/callback"),
 		state,
 	)
 
