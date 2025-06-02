@@ -17,6 +17,18 @@ type TrelloUserInfo struct {
 	Email    string `json:"email"`
 }
 
+// NotionUserInfo represents basic user info from Notion
+type NotionUserInfo struct {
+	Object    string `json:"object"`
+	ID        string `json:"id"`
+	Name      string `json:"name"`
+	AvatarURL string `json:"avatar_url"`
+	Type      string `json:"type"`
+	Person    struct {
+		Email string `json:"email"`
+	} `json:"person,omitempty"`
+}
+
 // AuthResponse represents the authentication response
 type AuthResponse struct {
 	Token    string      `json:"token"`
