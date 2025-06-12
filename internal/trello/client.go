@@ -44,7 +44,7 @@ func (c *Client) GetUserInfo(token string) (*models.TrelloUserInfo, error) {
 
 	// Check response status
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("Trello API returned status %d", resp.StatusCode)
+		return nil, fmt.Errorf("Trello API returned status: %d", resp.StatusCode)
 	}
 
 	// Decode response
@@ -62,7 +62,7 @@ func (c *Client) ExchangeCodeForToken(code string) (string, error) {
 	// Instead, we need to use the code directly as a token
 	// This is a simplification of the process - in a real app, you might want to validate the code
 	// by making a test request to the Trello API
-	
+
 	// Build request URL for validation
 	requestURL := fmt.Sprintf(
 		"https://api.trello.com/1/members/me?key=%s&token=%s",
